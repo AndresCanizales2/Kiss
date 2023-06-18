@@ -5,9 +5,11 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.io.Serial;
 import java.io.Serializable;
+import java.util.Base64;
 
 @Document(collection = "usuarios")
 public class UsuarioEntity implements Serializable {
@@ -40,8 +42,10 @@ public class UsuarioEntity implements Serializable {
     private String musica_favorita;
     @Field("salario")
     private String salario;
-
-
+    @Field("UrlFotoUsuario")
+    private String  UrlFotoUsuario;
+    @Field("textArea")
+    private String textArea;
     public String getId() {
         return id;
     }
@@ -145,4 +149,28 @@ public class UsuarioEntity implements Serializable {
     public void setUserName(String userName) {
         this.userName = userName;
     }
+
+
+
+
+
+    public String getTextArea() {
+        return textArea;
+    }
+
+    public void setTextArea(String textArea) {
+        this.textArea = textArea;
+    }
+
+    public String getUrlFotoUsuario() {
+        return UrlFotoUsuario;
+    }
+
+    public void setUrlFotoUsuario(String urlFotoUsuario) {
+        UrlFotoUsuario = urlFotoUsuario;
+    }
+
+
+
+
 }

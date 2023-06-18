@@ -36,180 +36,200 @@
     </div>
 
 
-  <form method="post" action="#" th:action="@{/registro/save}" th:object="${usuario}">
+
+    <form method="post" action="#" th:action="@{/registro/save}" th:object="${usuario}" enctype="multipart/form-data">
 
 
+      <!--NOMBRE -->
+      <div class="row g-3">
 
-    <!--NOMBRE -->
-    <div class="row g-3">
-
-      <div class="col-12">
-        <label for="userName" class="form-label">userName</label>
-        <div class="input-group has-validation">
-          <span class="input-group-text">@</span>
-          <input type="text"  th:field="*{userName}"  class="form-control" id="userName" placeholder="userName" required>
-          <div class="invalid-feedback">
-           Nombre es requerido.
+        <div class="col-12">
+          <label for="userName" class="form-label">userName</label>
+          <div class="input-group has-validation">
+            <span class="input-group-text">@</span>
+            <input type="text"  th:field="*{userName}"  class="form-control" id="userName" placeholder="userName" required>
+            <div class="invalid-feedback">
+              Nombre es requerido.
+            </div>
           </div>
+          <div class="invalid-feedback" th:classappend="${#fields.hasErrors('userName')} ? 'd-block' : ''" th:errors="*{userName}"></div>
+          <span th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}" class="invalid-feedback"></span>
         </div>
-        <div class="invalid-feedback" th:classappend="${#fields.hasErrors('userName')} ? 'd-block' : ''" th:errors="*{userName}"></div>
-        <span th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}" class="invalid-feedback"></span>
-      </div>
 
-      <div class="col-sm-6">
-        <label for="nombre" class="form-label">Nombre</label>
-        <input type="text"  th:field="*{nombre}"   class="form-control" id="nombre" name="nombre" required>
-        <div class="invalid-feedback" th:classappend="${#fields.hasErrors('nombre')} ? 'd-block' : ''" th:errors="*{nombre}"></div>
-        <span th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}" class="invalid-feedback"></span>
-      </div>
-      <!--APELLIDO -->
-      <div class="col-sm-6">
-        <label for="apellido" class="form-label">Apellido</label>
-        <input type="text"  th:field="*{apellido}" class="form-control " id="apellido" name="apellido" required>
-        <div class="invalid-feedback" th:classappend="${#fields.hasErrors('apellido')} ? 'd-block' : ''" th:errors="*{apellido}"></div>
-        <span th:if="${#fields.hasErrors('apellido')}" th:errors="*{apellido}" class="invalid-feedback"></span>
-
-      </div>
-      <!-- CONTRASEÑA -->
-      <div class="col-sm-6">
-        <label for="password" class="form-label">Contraseña</label>
-        <input type="password" th:field="*{password}" class="form-control" id="password" name="password" required>
-        <div class="invalid-feedback" th:classappend="${#fields.hasErrors('password')} ? 'd-block' : ''" th:errors="*{password}"></div>
-        <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="invalid-feedback"></span>
-      </div>
-
-
-      <div class="col-sm-6">
-        <label for="confirmPassword" class="form-label">Confirmar Contraseña</label>
-        <input type="password" th:field="*{confirmPassword}" class="form-control" id="confirmPassword" name="confirmPassword" required>
-        <div class="invalid-feedback" th:classappend="${#fields.hasErrors('confirmPassword')} ? 'd-block' : ''" th:errors="*{confirmPassword}"></div>
-        <span th:if="${#fields.hasErrors('confirmPassword')}" th:errors="*{confirmPassword}" class="invalid-feedback"></span>
-
-      </div>
-
-      <!--TELEFONO -->
-      <div class="col-12">
-        <label for="telefono" class="form-label">Teléfono</label>
-        <input type="text" th:field="*{telefono}" class="form-control" id="telefono" name="telefono" required>
-        <div class="invalid-feedback" th:classappend="${#fields.hasErrors('telefono')} ? 'd-block' : ''" th:errors="*{telefono}"></div>
-        <span th:if="${#fields.hasErrors('telefono')}" th:errors="*{telefono}" class="invalid-feedback"></span>
-      </div>
-
-      <!--EDAD -->
-      <div class="col-sm-6">
-        <label for="edad" class="form-label">Edad</label>
-        <input type="number"  th:field="*{edad}" class="form-control" id="edad" name="edad" required>
-        <div class="invalid-feedback" th:classappend="${#fields.hasErrors('edad')} ? 'd-block' : ''" th:errors="*{edad}"></div>
-        <span th:if="${#fields.hasErrors('edad')}" th:errors="*{edad}" class="invalid-feedback"></span>
-
-      </div>
-      <!--ALTURA -->
-      <div class="col-sm-6">
-        <label for="altura" class="form-label">Altura</label>
-        <input type="number" th:field="*{altura}"  class="form-control" id="altura" name="altura" required>
-        <div class="invalid-feedback" th:classappend="${#fields.hasErrors('altura')} ? 'd-block' : ''" th:errors="*{altura}"></div>
-        <span th:if="${#fields.hasErrors('altura')}" th:errors="*{altura}" class="invalid-feedback"></span>
-      </div>
-
-      <h5>Genero</h5>
-      <div class="col-12">
-        <div class="form-check form-check-inline">
-          <input id="femenino" th:field="*{genero}" name="genero" type="radio" class="form-check-input" value="Femenino" required th:checked="${usuario.genero == 'Femenino'}">
-          <label class="form-check-label" for="femenino">Femenino</label>
+        <div class="col-sm-6">
+          <label for="nombre" class="form-label">Nombre</label>
+          <input type="text"  th:field="*{nombre}"   class="form-control" id="nombre" name="nombre" required>
+          <div class="invalid-feedback" th:classappend="${#fields.hasErrors('nombre')} ? 'd-block' : ''" th:errors="*{nombre}"></div>
+          <span th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}" class="invalid-feedback"></span>
         </div>
-        <div class="form-check form-check-inline">
-          <input id="masculino" th:field="*{genero}" name="genero" type="radio" class="form-check-input" value="Masculino" required th:checked="${usuario.genero == 'Masculino'}">
-          <label class="form-check-label" for="masculino">Masculino</label>
+        <!--APELLIDO -->
+        <div class="col-sm-6">
+          <label for="apellido" class="form-label">Apellido</label>
+          <input type="text"  th:field="*{apellido}" class="form-control " id="apellido" name="apellido" required>
+          <div class="invalid-feedback" th:classappend="${#fields.hasErrors('apellido')} ? 'd-block' : ''" th:errors="*{apellido}"></div>
+          <span th:if="${#fields.hasErrors('apellido')}" th:errors="*{apellido}" class="invalid-feedback"></span>
+
         </div>
-        <div class="form-check form-check-inline">
-          <input id="otros" th:field="*{genero}" name="genero" type="radio" class="form-check-input" value="Otros" required th:checked="${usuario.genero == 'Otros'}">
-          <label class="form-check-label" for="otros">Otros</label>
+        <!-- CONTRASEÑA -->
+        <div class="col-sm-6">
+          <label for="password" class="form-label">Contraseña</label>
+          <input type="password" th:field="*{password}" class="form-control" id="password" name="password" required>
+          <div class="invalid-feedback" th:classappend="${#fields.hasErrors('password')} ? 'd-block' : ''" th:errors="*{password}"></div>
+          <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="invalid-feedback"></span>
         </div>
-        <div class="invalid-feedback" th:classappend="${#fields.hasErrors('genero')} ? 'd-block' : ''" th:errors="*{genero}"></div>
-        <span th:if="${#fields.hasErrors('genero')}" th:errors="*{genero}" class="invalid-feedback"></span>
-      </div>
 
 
-      <!--CUIDAD -->
-      <div class="col-md-4">
-        <label for="ciudad" class="form-label">Ciudad</label>
-        <select class="form-select" th:field="*{ciudad}" id="ciudad" required="">
-          <option value="">Seleccione Ciudad</option>
-          <option value="madrid">Madrid</option>
-          <option value="barcelona">Barcelona</option>
-          <option value="valencia">Valencia</option>
-          <option value="galicia">Galicia</option>
+        <div class="col-sm-6">
+          <label for="confirmPassword" class="form-label">Confirmar Contraseña</label>
+          <input type="password" th:field="*{confirmPassword}" class="form-control" id="confirmPassword" name="confirmPassword" required>
+          <div class="invalid-feedback" th:classappend="${#fields.hasErrors('confirmPassword')} ? 'd-block' : ''" th:errors="*{confirmPassword}"></div>
+          <span th:if="${#fields.hasErrors('confirmPassword')}" th:errors="*{confirmPassword}" class="invalid-feedback"></span>
 
-        </select>
-        <div class="invalid-feedback">
-          Please provide a valid state.
         </div>
-        <div class="invalid-feedback" th:classappend="${#fields.hasErrors('ciudad')} ? 'd-block' : ''" th:errors="*{ciudad}"></div>
-        <span th:if="${#fields.hasErrors('ciudad')}" th:errors="*{ciudad}" class="invalid-feedback"></span>
-      </div>
 
-
-      <!--MARCA COCHE -->
-      <div class="col-md-4">
-        <label for="coche" class="form-label">Marca de tu coche <span class="text-body-secondary">(Opcional) </span></label>
-        <select class="form-select" th:field="*{coche}" id="coche" required="">
-          <option value="" >No poseo coche </option>z
-          <option value="zeat">Zeat</option>
-          <option value="ferrari">Ferrari</option>
-          <option value="audi">Audi</option>
-          <option value="kia">Kia</option>
-          <option value="mercedes" >Mercedes </option>
-
-        </select>
-        <div class="invalid-feedback">
-          Please provide a valid state.
+        <!--TELEFONO -->
+        <div class="col-12">
+          <label for="telefono" class="form-label">Teléfono</label>
+          <input type="text" th:field="*{telefono}" class="form-control" id="telefono" name="telefono" required>
+          <div class="invalid-feedback" th:classappend="${#fields.hasErrors('telefono')} ? 'd-block' : ''" th:errors="*{telefono}"></div>
+          <span th:if="${#fields.hasErrors('telefono')}" th:errors="*{telefono}" class="invalid-feedback"></span>
         </div>
-        <div class="invalid-feedback" th:classappend="${#fields.hasErrors('coche')} ? 'd-block' : ''" th:errors="*{coche}"></div>
-        <span th:if="${#fields.hasErrors('coche')}" th:errors="*{coche}" class="invalid-feedback"></span>
-      </div>
 
-      <!--MUSICA -->
-      <div class="col-md-4">
-        <label for="musica_favorita" class="form-label">Cual es tu musica favorita?</label>
-        <select class="form-select"  th:field="*{musica_favorita}" id="musica_favorita" required="">
-          <option value="">Selecciona estilo</option>
-          <option value="rap">Rap</option>
-          <option value="tecno">Tecno</option>
-          <option value="reggaeton">Reggaeton</option>
-          <option value="chillOut">ChillOut</option>
-          <option value="rock" >Rock</option>
-          <option value="pop" >Pop</option>
-          <option value="country" >Country</option>
+        <!--EDAD -->
+        <div class="col-sm-6">
+          <label for="edad" class="form-label">Edad</label>
+          <input type="number"  th:field="*{edad}" class="form-control" id="edad" name="edad" required>
+          <div class="invalid-feedback" th:classappend="${#fields.hasErrors('edad')} ? 'd-block' : ''" th:errors="*{edad}"></div>
+          <span th:if="${#fields.hasErrors('edad')}" th:errors="*{edad}" class="invalid-feedback"></span>
 
-        </select>
-        <div class="invalid-feedback">
-          Please provide a valid state.
         </div>
-        <div class="invalid-feedback" th:classappend="${#fields.hasErrors('musica_favorita')} ? 'd-block' : ''" th:errors="*{musica_favorita}"></div>
-        <span th:if="${#fields.hasErrors('musica_favorita')}" th:errors="*{musica_favorita}" class="invalid-feedback"></span>
+        <!--ALTURA -->
+        <div class="col-sm-6">
+          <label for="altura" class="form-label">Altura</label>
+          <input type="number" th:field="*{altura}"  class="form-control" id="altura" name="altura" required>
+          <div class="invalid-feedback" th:classappend="${#fields.hasErrors('altura')} ? 'd-block' : ''" th:errors="*{altura}"></div>
+          <span th:if="${#fields.hasErrors('altura')}" th:errors="*{altura}" class="invalid-feedback"></span>
+        </div>
 
-      </div>
-
-      <div class="col-12">
-        <label for="salario" class="form-label">Salario </label>
-        <div class="input-group has-validation">
-          <span class="input-group-text"><i class="bi bi-currency-euro"></i></span>
-
-          <input type="number" class="form-control"   th:field="*{salario}" id="salario" placeholder="salario" required="">
-          <div class="invalid-feedback">
-            Your username is required.
+        <h5>Genero</h5>
+        <div class="col-12">
+          <div class="form-check form-check-inline">
+            <input id="femenino" th:field="*{genero}" name="genero" type="radio" class="form-check-input" value="Femenino" required th:checked="${usuario.genero == 'Femenino'}">
+            <label class="form-check-label" for="femenino">Femenino</label>
           </div>
+          <div class="form-check form-check-inline">
+            <input id="masculino" th:field="*{genero}" name="genero" type="radio" class="form-check-input" value="Masculino" required th:checked="${usuario.genero == 'Masculino'}">
+            <label class="form-check-label" for="masculino">Masculino</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input id="otros" th:field="*{genero}" name="genero" type="radio" class="form-check-input" value="Otros" required th:checked="${usuario.genero == 'Otros'}">
+            <label class="form-check-label" for="otros">Otros</label>
+          </div>
+          <div class="invalid-feedback" th:classappend="${#fields.hasErrors('genero')} ? 'd-block' : ''" th:errors="*{genero}"></div>
+          <span th:if="${#fields.hasErrors('genero')}" th:errors="*{genero}" class="invalid-feedback"></span>
         </div>
 
-        <div class="invalid-feedback" th:classappend="${#fields.hasErrors('salario')} ? 'd-block' : ''" th:errors="*{salario}"></div>
-        <span th:if="${#fields.hasErrors('salario')}" th:errors="*{salario}" class="invalid-feedback"></span>
+
+        <!--CUIDAD -->
+        <div class="col-md-4">
+          <label for="ciudad" class="form-label">Ciudad</label>
+          <select class="form-select" th:field="*{ciudad}" id="ciudad" required="">
+            <option value="">Seleccione Ciudad</option>
+            <option value="madrid">Madrid</option>
+            <option value="barcelona">Barcelona</option>
+            <option value="valencia">Valencia</option>
+            <option value="galicia">Galicia</option>
+
+          </select>
+          <div class="invalid-feedback">
+            Please provide a valid state.
+          </div>
+          <div class="invalid-feedback" th:classappend="${#fields.hasErrors('ciudad')} ? 'd-block' : ''" th:errors="*{ciudad}"></div>
+          <span th:if="${#fields.hasErrors('ciudad')}" th:errors="*{ciudad}" class="invalid-feedback"></span>
+        </div>
 
 
+        <!--MARCA COCHE -->
+        <div class="col-md-4">
+          <label for="coche" class="form-label">Marca de tu coche <span class="text-body-secondary">(Opcional) </span></label>
+          <select class="form-select" th:field="*{coche}" id="coche" required="">
+            <option value="" >No poseo coche </option>z
+            <option value="zeat">Zeat</option>
+            <option value="ferrari">Ferrari</option>
+            <option value="audi">Audi</option>
+            <option value="kia">Kia</option>
+            <option value="mercedes" >Mercedes </option>
+
+          </select>
+          <div class="invalid-feedback">
+            Please provide a valid state.
+          </div>
+          <div class="invalid-feedback" th:classappend="${#fields.hasErrors('coche')} ? 'd-block' : ''" th:errors="*{coche}"></div>
+          <span th:if="${#fields.hasErrors('coche')}" th:errors="*{coche}" class="invalid-feedback"></span>
+        </div>
+
+        <!--MUSICA -->
+        <div class="col-md-4">
+          <label for="musica_favorita" class="form-label">Cual es tu musica favorita?</label>
+          <select class="form-select"  th:field="*{musica_favorita}" id="musica_favorita" required="">
+            <option value="">Selecciona estilo</option>
+            <option value="rap">Rap</option>
+            <option value="tecno">Tecno</option>
+            <option value="reggaeton">Reggaeton</option>
+            <option value="chillOut">ChillOut</option>
+            <option value="rock" >Rock</option>
+            <option value="pop" >Pop</option>
+            <option value="country" >Country</option>
+
+          </select>
+          <div class="invalid-feedback">
+            Please provide a valid state.
+          </div>
+          <div class="invalid-feedback" th:classappend="${#fields.hasErrors('musica_favorita')} ? 'd-block' : ''" th:errors="*{musica_favorita}"></div>
+          <span th:if="${#fields.hasErrors('musica_favorita')}" th:errors="*{musica_favorita}" class="invalid-feedback"></span>
+
+        </div>
+        <!--SALARIO -->
+        <div class="col-12">
+          <label for="salario" class="form-label">Salario </label>
+          <div class="input-group has-validation">
+            <span class="input-group-text"><i class="bi bi-currency-euro"></i></span>
+
+            <input type="number" class="form-control"   th:field="*{salario}" id="salario" placeholder="salario" required="">
+            <div class="invalid-feedback">
+              Your username is required.
+            </div>
+          </div>
+
+          <div class="invalid-feedback" th:classappend="${#fields.hasErrors('salario')} ? 'd-block' : ''" th:errors="*{salario}"></div>
+          <span th:if="${#fields.hasErrors('salario')}" th:errors="*{salario}" class="invalid-feedback"></span>
+        </div>
+
+        <!--IMAGEN -->
+
+
+        <!--IMAGEN -->
+        <div class="input-group mb-3">
+          <input type="file"  name="image"  class="form-control"  id="image">
+          <label class="input-group-text" for="image">Upload</label>
+          <div class="invalid-feedback" th:classappend="${#fields.hasErrors('imagen')} ? 'd-block' : ''" th:errors="*{imagen}"></div>
+          <span th:if="${#fields.hasErrors('imagen')}" th:errors="*{imagen}" class="invalid-feedback"></span>
+        </div>
+
+
+
+
+
+        <div class="col-12">
+          <label for="textArea" class="form-label">Danos una breve descripción de ti</label>
+          <textarea class="form-control"  th:field="*{textArea}" id="textArea" rows="3"></textarea>
+          <div class="invalid-feedback" th:classappend="${#fields.hasErrors('textArea')} ? 'd-block' : ''" th:errors="*{textArea}"></div>
+          <span th:if="${#fields.hasErrors('textArea')}" th:errors="*{textArea}" class="invalid-feedback"></span>
+        </div>
       </div>
-    </div>
-    <hr class="my-4">
-    <button class="w-100 btn btn-primary btn-lg" type="submit">Registrate</button>
-  </form>
+      <hr class="my-4">
+      <button class="w-100 btn btn-primary btn-lg" type="submit">Registrate</button>
+    </form>
 
   </main>
 </div>

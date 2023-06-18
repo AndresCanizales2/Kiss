@@ -27,7 +27,8 @@ public class Mapper {
         usuarioDTO.setCoche(usuarioEntity.getCoche());
         usuarioDTO.setMusica_favorita(usuarioEntity.getMusica_favorita());
         usuarioDTO.setSalario(usuarioEntity.getSalario());
-
+        usuarioDTO.setUrlFotoUsuario(usuarioEntity.getUrlFotoUsuario());
+        usuarioDTO.setTextArea(usuarioEntity.getTextArea());
         return usuarioDTO;
     }
     /**
@@ -49,7 +50,8 @@ public class Mapper {
         usuarioEntity.setCoche(usuarioDTO.getCoche());
         usuarioEntity.setMusica_favorita(usuarioDTO.getMusica_favorita());
         usuarioEntity.setSalario(usuarioDTO.getSalario());
-
+        usuarioEntity.setUrlFotoUsuario(usuarioDTO.getUrlFotoUsuario());
+        usuarioEntity.setTextArea(usuarioDTO.getTextArea());
         return usuarioEntity;
     }
 }

@@ -1,6 +1,7 @@
 package com.KissApp.component.Usuario;
 
 import java.util.HashMap;
+import java.util.List;
 
 
 public interface UsuarioService{
@@ -10,5 +11,6 @@ public interface UsuarioService{
 
     HashMap<String, String> validacionInicioSesion(String userName, String password);
 
+    List<CardData> perfiles();
 
 }

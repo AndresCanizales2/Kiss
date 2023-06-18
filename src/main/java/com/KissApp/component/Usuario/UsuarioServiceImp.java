@@ -6,7 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.Base64;
 import java.util.HashMap;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class UsuarioServiceImp implements UsuarioService{
@@ -40,5 +44,20 @@ public class UsuarioServiceImp implements UsuarioService{
         }
         return mensajes;
     }
+
+    @Override
+    public List<CardData> perfiles() {
+        List<UsuarioDTO> usuarios = usuarioRepository.findAll().stream()
+                .map(UsuarioDTO::convertEntityToDto)
+                .collect(Collectors.toList());
+        List<CardData> cads = new ArrayList<>();
+        for(UsuarioDTO usuario :usuarios){
+
+           CardData card = new CardData(usuario.getNombre() , Integer.parseInt(usuario.getEdad()), usuario.getUrlFotoUsuario()  , usuario.getTextArea());
+           cads.add(card);
+        }
+        return cads;
+    }
+
 
 }

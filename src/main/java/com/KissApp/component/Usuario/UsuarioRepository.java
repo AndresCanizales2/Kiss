@@ -8,7 +8,12 @@ import java.util.List;
 
 @Repository
 public interface UsuarioRepository extends MongoRepository<UsuarioEntity , String> {
+
+
+
+
     UsuarioEntity findByUserNameAndPassword(String username, String password);
 
 
+    UsuarioEntity findByUserName(String user);
 }

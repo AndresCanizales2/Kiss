@@ -53,10 +53,15 @@ public class UsuarioServiceImp implements UsuarioService{
         List<CardData> cads = new ArrayList<>();
         for(UsuarioDTO usuario :usuarios){
 
-           CardData card = new CardData(usuario.getNombre() , Integer.parseInt(usuario.getEdad()), usuario.getUrlFotoUsuario()  , usuario.getTextArea());
+           CardData card = new CardData(usuario.getUserName() , usuario.getNombre() , Integer.parseInt(usuario.getEdad()), usuario.getUrlFotoUsuario()  , usuario.getTextArea());
            cads.add(card);
         }
         return cads;
+    }
+
+    @Override
+    public UsuarioEntity perfilPorUser(String user){
+        return usuarioRepository.findByUserName(user);
     }
 
 

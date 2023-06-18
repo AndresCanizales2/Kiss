@@ -27,17 +27,15 @@
 <!-- Example Code -->
 <div style="padding: 10rem">
     <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-3 ">
             <div class="card h-100">
-                <svg class="bd-placeholder-img card-img-top" width="100%" height="120" xmlns="http://www.w3.org/2000/svg"
-                     role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice"
-                     focusable="false">
+                <img th:src="${imagen1}">
                     <title>Placeholder</title>
                     <rect width="100%" height="100%" fill="#868e96"></rect>
-                    <text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text>
+
                 </svg>
                 <div class="card-body">
-                    <h5 class="card-title">Saria</h5>
+                    <h5 class="card-title"  th:text="${nombreUsuario1}" ></h5>
                     <table class="table">
                         <thead>
                         <tr>
@@ -78,27 +76,26 @@
         <div class="col-md-6">
             <div class="card h-100">
                 <div class="card-body text-center">
-                    <h5 class="card-title">Porcentajes</h5>
-                    <p th:text="${comentario1}"></p>
-                    <p th:text="${comentario2}"></p>
-                    <p th:text="${comentario3}"></p>
-                    <p th:text="${comentario4}"></p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                    <h5 class="card-title display-1">Porcentajes</h5>
+                    <p class="display-2" th:text="${comentario1}"></p>
+                    <p class="display-2" th:text="${comentario2}"></p>
+                    <p class="display-2" th:text="${comentario3}"></p>
+                    <p class="display-2" th:text="${comentario4}"></p>
+                    <p class="display-2" th:text="${comentario5}"></p>
+                    <a href="/perfil" class="btn btn-primary">Volver</a>
                 </div>
             </div>
         </div>
 
         <div class="col-md-3">
             <div class="card h-100">
-                <svg class="bd-placeholder-img card-img-top" width="100%" height="120" xmlns="http://www.w3.org/2000/svg"
-                     role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice"
-                     focusable="false">
+                <img th:src="${imagen2}">
                     <title>Placeholder</title>
                     <rect width="100%" height="100%" fill="#868e96"></rect>
-                    <text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text>
+
                 </svg>
                 <div class="card-body">
-                    <h5 class="card-title">Laura</h5>
+                    <h5 class="card-title"  th:text="${nombreUsuario2}" ></h5>
                     <table class="table">
                         <thead>
                         <tr>

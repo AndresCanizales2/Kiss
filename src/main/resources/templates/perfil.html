@@ -42,8 +42,9 @@
     </div>
 
     <div class="tinder--cards">
-        <div th:each="cardData : ${perfiles}" class="tinder--card ">
-            <img th:src="${cardData.imagen}"><h3 class="text-container" th:text="${cardData.nombre + ', ' + cardData.edad + ' años'}"></h3>
+        <div th:each="cardData : ${perfiles}"  th:class="${cardData.usuarioName + '  noSelect tinder--card' } ">
+            <img th:src="${cardData.imagen}">
+            <h3 class="text-container" th:text="${cardData.nombre + ', ' + cardData.edad + ' años'}"></h3>
             <p th:text="${cardData.descripcion}"></p>
         </div>
 
@@ -54,40 +55,25 @@
         <button id="love"><i class="fa fa-heart"></i></button>
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+        <button id="estadistica"><i class="fa fa-chart-line"></i></button>
         <script>
             $(document).ready(function() {
-                // Manejar el evento de clic del botón
                 $("#estadistica").click(function() {
-                    // Obtener los valores de los elementos HTML
-                    var nombre = $("#nombre").val();
-                    var edad = $("#edad").val();
-                    var descripcion = $("#descripcion").val();
+                    // Obtener el nombre de la primera clase con el ID "select"
+                    var primerNombre = $("#select").find(".text-container").text().split(",")[0].trim();
+                    console.log(primerNombre)
+                    // Codificar el nombre
+                    var nombreCodificado = encodeURIComponent(primerNombre);
 
-                    // Datos a enviar
-                    var datos = {
-                        nombre: nombre,
-                        edad: edad,
-                        descripcion: descripcion
-                    };
+                    // Construir la URL con el nombre como parámetro
+                    var url = "/comparativa?nombre=" + nombreCodificado;
 
-                    // Realizar la petición POST
-                    $.ajax({
-                        url: "/comparativa",
-                        type: "POST",
-                        data: datos,
-                        success: function(response) {
-                            // Manejar la respuesta del servidor
-                            console.log(response);
-                        },
-                        error: function(xhr, status, error) {
-                            // Manejar el error
-                            console.log(error);
-                        }
-                    });
+                    // Hacer algo con la URL (por ejemplo, redirigir a la página)
+                    window.location.href = url;
                 });
             });
         </script>
-        <button id="estadistica"><i class="fa fa-chart-line"></i></button>
     </div>
 </div>
 <!-- partial -->

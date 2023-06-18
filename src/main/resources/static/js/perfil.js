@@ -12,6 +12,16 @@ function initCards(card, index) {
         card.style.zIndex = allCards.length - index;
         card.style.transform = 'scale(' + (20 - index) / 20 + ') translateY(-' + 30 * index + 'px)';
         card.style.opacity = (10 - index) / 10;
+
+        console.log(allCards.length, allCards.length - 1 , newCards.length +1 , newCards.length -1 , allCards.length ,  newCards.length) ;
+        console.log(index)
+        // Si es la tarjeta con z-index más alto (la tarjeta superior visible), agrega el id "select"
+        if (index === 0) {
+            card.id = 'select';
+        } else {
+            // Para el resto de las tarjetas, se asegura de que no tengan el id "select"
+            card.id = '';
+        }
     });
 
     tinderContainer.classList.add('loaded');
@@ -41,6 +51,7 @@ allCards.forEach(function (el) {
     });
 
     hammertime.on('panend', function (event) {
+
         el.classList.remove('moving');
         tinderContainer.classList.remove('tinder_love');
         tinderContainer.classList.remove('tinder_nope');
@@ -49,6 +60,9 @@ allCards.forEach(function (el) {
         var keep = Math.abs(event.deltaX) < 80 || Math.abs(event.velocityX) < 0.5;
 
         event.target.classList.toggle('removed', !keep);
+        if (!keep) {
+            event.target.id = ''; // Borra el id "select" antes de retirar la tarjeta
+        }
 
         if (keep) {
             event.target.style.transform = '';
@@ -75,7 +89,7 @@ function createButtonListener(love) {
         if (!cards.length) return false;
 
         var card = cards[0];
-
+        card.id = ''; // Borra el id "select" antes de retirar la tarjeta
         card.classList.add('removed');
 
         if (love) {

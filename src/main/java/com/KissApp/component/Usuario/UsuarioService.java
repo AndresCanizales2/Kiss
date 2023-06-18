@@ -13,4 +13,6 @@ public interface UsuarioService{
 
     List<CardData> perfiles();
 
+    UsuarioEntity perfilPorUser(String user);
+
 }
